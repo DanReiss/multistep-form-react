@@ -91,7 +91,10 @@ button{
 
   @include large{
     grid-template-columns: 4rem auto;
-    width: 40vw;
+  }
+
+  @include large{
+    width: 50vw;
   }
 }
 
