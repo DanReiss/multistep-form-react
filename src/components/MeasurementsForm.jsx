@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import Form from "./Form";
 import InputItem from "./InputItem";
 
-function MeasurementsForm({changeStep, onSubmit}) {
+function MeasurementsForm({changeStep, stepsMap, onSubmit}) {
     const {register, handleSubmit, reset} = useForm();
     const [currentErrors, setCurrentErrors] = useState();
 
@@ -32,7 +32,8 @@ function MeasurementsForm({changeStep, onSubmit}) {
         formControl={{handleSubmit, reset, setCurrentErrors}} 
         lastStepSubmit={onSubmit}
         title="Sign Up" 
-        stepSchema={stepSchema}>
+        stepSchema={stepSchema}
+        stepsMap={stepsMap}>
             
             <InputItem name="weight" type="number" label="Weight(kg)" placeholder="83kg" register={register} error={currentErrors}/>
             <InputItem name="height" type="number" label="Height(cm)" placeholder="175cm" register={register} error={currentErrors}/>

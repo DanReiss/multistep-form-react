@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState } from "react";
 
 import FormContext from "../context/FormContext";
+import StepsViewBar from "./StepsViewBar";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeftLong, faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
@@ -56,6 +57,7 @@ function Form(props) {
     return (
       <div className="form_wrapper">
           <h2>{props.title}</h2>
+          <StepsViewBar stepsMap={props.stepsMap}></StepsViewBar>
           <section className="form_container">
               <form onSubmit={handleSubmit(onSubmitStep)}>
                   {props.children}

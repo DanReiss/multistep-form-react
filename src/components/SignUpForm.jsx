@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import Form from "./Form";
 import InputItem from "./InputItem";
 
-function SignUpForm({changeStep}) {
+function SignUpForm({changeStep, stepsMap}) {
 
     const {register, handleSubmit, reset} = useForm();
     const [currentErrors, setCurrentErrors] = useState();
@@ -37,7 +37,8 @@ function SignUpForm({changeStep}) {
         formControl={{handleSubmit, reset, setCurrentErrors}} 
         isFirstStep={true} 
         title="Sign Up" 
-        stepSchema={stepSchema}>
+        stepSchema={stepSchema}
+        stepsMap={stepsMap}>
             
             <InputItem name="email" type="text" label="Email" placeholder="youremail@gmail.com" register={register} error={currentErrors}/>
             <InputItem name="username" type="text" label="Username" placeholder="Username" register={register} error={currentErrors}/>

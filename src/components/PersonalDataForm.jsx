@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import Form from "./Form";
 import InputItem from "./InputItem";
 
-function PersonalDataForm({changeStep}){
+function PersonalDataForm({changeStep, stepsMap}){
 
     const {register, handleSubmit, reset} = useForm();
     const [currentErrors, setCurrentErrors] = useState();
@@ -29,7 +29,8 @@ function PersonalDataForm({changeStep}){
         changeStep={changeStep}
         formControl={{handleSubmit, reset, setCurrentErrors}} 
         title="Sign Up" 
-        stepSchema={stepSchema}>
+        stepSchema={stepSchema}
+        stepsMap={stepsMap}>
 
             <InputItem name="name" type="text" label="Name" placeholder="Your Name" register={register} error={currentErrors}/>
             <InputItem name="lastname" type="text" label="Last Name" placeholder="Your LastName" register={register} error={currentErrors}/>

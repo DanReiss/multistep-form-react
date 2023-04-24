@@ -16,10 +16,10 @@ function App() {
   const [currentStep, setCurrentStep] = useState(0);
 
   const steps = [
-    <SignUpForm changeStep={changeStep}/>,
-    <PersonalDataForm changeStep={changeStep}/>,
-    <MeasurementsForm onSubmit={onSubmitForm} changeStep={changeStep}/>,
-    <FinalFormPage username={formData.name} setVisualEl={setCurrentVisualEl}/>
+    <SignUpForm changeStep={changeStep} stepsMap={stepsMap}/>,
+    <PersonalDataForm changeStep={changeStep} stepsMap={stepsMap}/>,
+    <MeasurementsForm onSubmit={onSubmitForm} changeStep={changeStep} stepsMap={stepsMap}/>,
+    <FinalFormPage username={formData.name} setVisualEl={setCurrentVisualEl} stepsMap={stepsMap}/>
   ];
 
   function changeStep(changeType) {
@@ -43,6 +43,10 @@ function App() {
     enviaria os dados para o banco de dados */
       console.log(formData)
   };
+
+  function stepsMap() {
+    return [steps, currentStep];
+  }
 
   return (
     <div className="App">
