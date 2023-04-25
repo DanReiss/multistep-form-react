@@ -66,6 +66,17 @@ button{
   visibility: hidden;
 }
 
+// @keyframes slide-in {
+//   from{
+//     opacity: 0;
+//     right: 25%;
+//   }
+//   to{
+//     opacity: 1;
+//     right: 0;
+//   }
+// }
+
 .form_wrapper{
   width: 93vw;
   position: relative;
@@ -74,6 +85,11 @@ button{
   display: grid;
   grid-template-columns: auto;
   align-items: center;
+
+  // proximo commit
+  // opacity: 0;
+  // right: 25%;
+  // animation: slide-in 0.5s ease-out forwards;
 
   h2{
   
@@ -90,7 +106,7 @@ button{
   }
 
   @include large{
-    grid-template-columns: 4rem auto;
+    grid-template-columns: 3rem auto;
   }
 
   @include large{
@@ -98,38 +114,89 @@ button{
   }
 }
 
-
 .steps_bar{
   list-style-type: none;
   height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  padding: 0rem 1rem;
   --li-size: 30px;
 
   li{
-    background-color: $green;
     color: white;
-    text-align: center;
-    width: var(--li-size);
-    height: var(--li-size);
-    line-height: var(--li-size);
-    border-radius: 50%;
     margin-bottom: 1rem;
-  }
-  
-  li.current{
-    background-color: $blue;
-  }
-
-  li.done{
-    background-color: $light-gray;
+    width: 100%;
     position: relative;
 
+    span{
+      display: inline-block;
+      text-align: center;
+      background-color: $green;
+      width: var(--li-size);
+      height: var(--li-size);
+      line-height: var(--li-size);
+      border-radius: 50%;
+    }
+
+    @include large{
+      text-align: center;
+      margin: 0;
+      height: 100%;
+    }
+
+  }
+
+  li:last-child{
+    width: var(--li-size);
+
+    @include large{
+      width: 100%;
+      height: var(--li-size);
+    }
+  }
+
+  li.current span{
+    background-color: $blue;
+  }
+  
+  li.done span{
+    background-color: $light-gray;
+  }
+
+  li.done::after{
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: -1;
+    background-color: $light-gray;
+  
+
+    @include large{
+      width: 5px;
+      height: 100%;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  li.last_done::after{
+    background: linear-gradient(90deg, $light-gray 0%, $blue 100%);
+  
+  
+    @include large{
+      background: linear-gradient(180deg, $light-gray 60%, $blue 100%);
+    }
   }
 
   @include large{
     flex-direction: column;
+    padding: 2rem 0;
     --li-size: 35px;
   }
 }

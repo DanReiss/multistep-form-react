@@ -16,7 +16,7 @@ function App() {
   const [currentStep, setCurrentStep] = useState(0);
 
   const steps = [
-    <SignUpForm changeStep={changeStep} stepsMap={stepsMap}/>,
+    <SignUpForm changeStep={changeStep} stepsMap={stepsMap} title="Sign Up"/>,
     <PersonalDataForm changeStep={changeStep} stepsMap={stepsMap}/>,
     <MeasurementsForm onSubmit={onSubmitForm} changeStep={changeStep} stepsMap={stepsMap}/>,
     <FinalFormPage username={formData.name} setVisualEl={setCurrentVisualEl} stepsMap={stepsMap}/>

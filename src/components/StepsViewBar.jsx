@@ -6,19 +6,22 @@ function StepsViewBar({stepsMap}){
 
   let itemClass = (i) => {
     if(i === currentStep) return "current";
+    if(i === currentStep - 1) return "done last_done"
     if(i < currentStep) return "done";
     return ""
   }
 
   return(
     <ul className="steps_bar">
-      {
-      Array(steps.length)
-      .fill()
-      .map((_, i)=>{
+      {steps
+      .map((step, i)=>{
 
+        console.log(step)
 
-        return <li key={i} className={itemClass(i)}>{i + 1}</li>
+        return (
+          <li key={i} className={itemClass(i)}> 
+            <span>{i + 1}</span>
+          </li>)
       })
       }
     </ul>
