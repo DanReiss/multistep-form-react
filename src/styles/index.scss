@@ -330,7 +330,7 @@ input::placeholder, select::placeholder{
 }
 
 .success_box{
-  @include flex(column, start, center)
+  @include flex(column, start, center);
 }
 
 .success_message{
