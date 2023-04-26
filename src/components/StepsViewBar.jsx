@@ -1,6 +1,6 @@
 import React from "react";
 
-function StepsViewBar({stepsMap}){
+function StepsViewBar({stepsMap}) {
 
   const [steps, currentStep] = stepsMap();
 
@@ -15,9 +15,6 @@ function StepsViewBar({stepsMap}){
     <ul className="steps_bar">
       {steps
       .map((step, i)=>{
-
-        console.log(step)
-
         return (
           <li key={i} className={itemClass(i)}> 
             <span>{i + 1}</span>
@@ -28,4 +25,4 @@ function StepsViewBar({stepsMap}){
   )
 }
 
-export default StepsViewBar
+export default StepsViewBar;
