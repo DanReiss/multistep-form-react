@@ -31,9 +31,11 @@ select{
 }
 
 input:not([type="checkbox"]){
-  border-width: 0 0 1px 0;
   font-size: 1rem;
   outline: none;
+  box-sizing: border-box;
+  border-width: 0 0 1px 0;
+  border-style: inset;
   border-color: $gray;
   width: 100%;
 }
@@ -108,7 +110,7 @@ button{
   }
 
   @include large{
-    width: 50vw;
+    width: 40vw;
   }
 }
 
@@ -224,13 +226,17 @@ input::placeholder, select::placeholder{
 }
 
 .input_box{
-  padding: 0.75rem 0;
+  padding: 0.5rem 0;
   position: relative;
   @include flex(column);
 
   input, select{
     margin: 0.4rem 0;
     padding: 0.4rem 0;
+  }
+
+  @include large{
+    padding: 0.75rem 0;
   }
 }
 
