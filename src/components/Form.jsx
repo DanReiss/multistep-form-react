@@ -75,7 +75,7 @@ function Form(props) {
                             <span className="d_none">Back</span>
                         </button>
                         }                
-                        <button className={props.isLastStep? "submit_btn" : "next_btn"} type="submit">
+                        <button aria-label="next step" className={props.isLastStep? "submit_btn" : "next_btn"} type="submit">
                             <span>
                                 <FontAwesomeIcon icon={faArrowRightLong}/>
                             </span>

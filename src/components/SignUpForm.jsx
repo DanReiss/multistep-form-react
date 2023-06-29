@@ -47,8 +47,11 @@ function SignUpForm({changeStep, stepsMap, title}) {
                     
             <div className="input_box input_no_text">
                 <div>
-                    <input {...register("agreeterms")} name="agreeterms"  type="checkbox" />
-                    <label className="agree_terms_label" htmlFor="agreeterms">I have read and agree to the Terms of Use and <a href="#">Privacy Policy<></></a></label>
+                    <label className="agree_terms_label" htmlFor="agreeterms">
+                        <input {...register("agreeterms")} name="agreeterms"  type="checkbox"/>
+                        I have read and agree to the Terms of Use and 
+                        <a href="#"> Privacy Policy</a>
+                    </label>
                 </div>
                 <span className="input_warning">
                     {

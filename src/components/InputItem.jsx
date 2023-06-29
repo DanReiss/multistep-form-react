@@ -25,7 +25,7 @@ function InputItem({
                 <label htmlFor={name}>{label}</label>
                 <div className="input_password_box">
                     <input name={name} type={passwordShow? "text": "password"} placeholder={placeholder} {...register(name)}/>
-                    <button type="button" onClick={changePasswordVisibility}>
+                    <button type="button" aria-label="next step" onClick={changePasswordVisibility}>
                         <span>
                             <FontAwesomeIcon icon={passwordShow? faEyeSlash: faEye} size="lg" />
                         </span>
