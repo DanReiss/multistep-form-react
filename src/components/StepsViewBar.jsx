@@ -8,21 +8,21 @@ function StepsViewBar({stepsMap}) {
     if(i === currentStep) return "current";
     if(i === currentStep - 1) return "done last_done"
     if(i < currentStep) return "done";
-    return ""
+    return;
   }
 
   return(
     <ul className="steps_bar">
-      {steps
-      .map((step, i)=>{
-        return (
-          <li key={i} className={itemClass(i)}> 
-            <span>{i + 1}</span>
-          </li>)
-      })
+      {
+        steps.map((step, i)=> {
+          return (
+            <li key={step.props.title ?? "Success Page"} className={itemClass(i)}> 
+              <span>{i + 1}</span>
+            </li>)
+        })
       }
     </ul>
   )
 }
 
-export default StepsViewBar;
+export default React.memo(StepsViewBar);

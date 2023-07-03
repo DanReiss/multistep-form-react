@@ -6,9 +6,9 @@ function VisualEl({names}) {
 
   return (
     <>
-    {names.map((name)=>{
-      return <div className={name} key={name}></div>
-    })}
+      {names.map((name)=> {
+        return <div className={name} key={name}></div>
+      })}
     </>
   );
 };
