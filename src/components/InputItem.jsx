@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 
-// Icons - FontAwesome
 import { FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
-
 function InputItem({
+		type = "text", 
     name, 
-    type, 
     label, 
     placeholder, 
     register, 
     error}) {
-    
 	const [passwordShow, setPasswordShow] = useState(false);
 
 	function changePasswordVisibility() {

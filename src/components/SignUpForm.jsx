@@ -4,10 +4,16 @@ import * as Yup from "yup";
 import Form from "./Form";
 import InputItem from "./InputItem";
 
-function SignUpForm({ changeStep, stepsMap, title, ...rest }) {
-
+function SignUpForm({ 
+		changeStep,
+	 	stepsMap, 
+		title}) {
 	const { register, handleSubmit, reset } = useForm();
 	const [currentErrors, setCurrentErrors] = useState({});
+	const inputsCommonProps = {
+		register, 
+		currentErrors,
+	}
 
 	const stepSchema = Yup.object().shape({
 		email: Yup.string()
@@ -38,12 +44,33 @@ function SignUpForm({ changeStep, stepsMap, title, ...rest }) {
 			stepSchema={stepSchema}
 			stepsMap={stepsMap}
 		>
-			<InputItem name="email" type="text" label="Email" placeholder="youremail@gmail.com" register={register} error={currentErrors} />
-			<InputItem name="username" type="text" label="Username" placeholder="Username" register={register} error={currentErrors} />
-			<InputItem name="password" type="password" label="Password" placeholder="Your password" register={register} error={currentErrors} />
-			<InputItem name="cpassword" type="password" label="Confirm Password" placeholder="Confirm password" register={register} error={currentErrors} />
-
-			<div className="input_box input_no_text">
+			<InputItem 
+				{...inputsCommonProps} 
+				name="email"   
+				label="Email" 
+				placeholder="youremail@gmail.com" 
+			/>
+			<InputItem 
+				{...inputsCommonProps}  
+				name="username" 
+				label="Username" 
+				placeholder="Username" 
+			/>
+			<InputItem 
+				{...inputsCommonProps} 
+				name="password" 
+				type="password" 
+				label="Password" 
+				placeholder="Your password" 
+			/>
+			<InputItem 
+				{...inputsCommonProps} 
+				name="cpassword" 
+				type="password" 
+				label="Confirm Password" 
+				placeholder="Confirm password" 
+			/>
+			<div className="input_box">
 				<div>
 					<label className="agree_terms_label" htmlFor="agreeterms">
 						<input {...register("agreeterms")} name="agreeterms" type="checkbox" />

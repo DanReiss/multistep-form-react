@@ -5,10 +5,18 @@ import StepsViewBar from "./StepsViewBar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeftLong, faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
 
-function Form(props) {
-
+function Form({
+		formControl,
+		stepSchema,
+		title,
+		lastStepSubmit,
+		changeStep,
+		stepsMap,
+		children
+	}) {
 	const {formData, setFormData} = useContext(FormContext);
-	const {handleSubmit, reset, setCurrentErrors} = props.formControl;
+	const {handleSubmit, reset, setCurrentErrors} = formControl;
+	const {numberOfSteps, current} = stepsMap();
 
 	useEffect(()=> {
 			setInitialValues();
@@ -30,14 +38,14 @@ function Form(props) {
 	}
 
 	function onSubmitStep(data) {
-		props.stepSchema
+		stepSchema
 		.validate(data, { abortEarly: false})
 		.then(resData => {
 				setFormData({...formData, ...resData})
-				if(props.lastStepSubmit) {
-					props.lastStepSubmit();
+				if(lastStepSubmit) {
+					lastStepSubmit();
 				}
-				props.changeStep("next")
+				changeStep("next")
 		})
 		.catch(err => {
 				let errObj = {};
@@ -50,20 +58,20 @@ function Form(props) {
 	};
 
 	function onBackStep() {
-		props.changeStep("back");
+		changeStep("back");
 	}
 
 	return (
 		<div className="form_wrapper">
-			<h2>{props.title}</h2>
-			<StepsViewBar stepsMap={props.stepsMap}/>
+			<h2>{title}</h2>
+			<StepsViewBar stepsMap={stepsMap}/>
 			<section className="form_container">
 				<form onSubmit={handleSubmit(onSubmitStep)}>
-					{props.children}
+					{children}
 
 					<div className="form_buttons_box">
 						{
-							props.isFirstStep
+							current === 0
 							? <button type="button" className="invisible"></button>
 							:	<button type="button" onClick={onBackStep}>
 									<span>
@@ -72,7 +80,15 @@ function Form(props) {
 									<span className="d_none">Back</span>
 								</button>
 						}                
-						<button aria-label="next step" className={props.isLastStep? "submit_btn" : "next_btn"} type="submit">
+						<button 
+							aria-label="next step"
+						 	className={
+								current === numberOfSteps 
+								? "submit_btn" 
+								: "next_btn"
+							} 
+							type="submit"
+						>
 							<span>
 								<FontAwesomeIcon icon={faArrowRightLong}/>
 							</span>

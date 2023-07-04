@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./styles/index.scss";
 
 import FormContext from "./context/FormContext";
-import { useForm } from 'react-hook-form'
 
 import SignUpForm from "./components/SignUpForm";
 import PersonalDataForm from "./components/PersonalDataForm";
@@ -14,8 +13,12 @@ function App() {
   const [formData, setFormData] = useState({});
   const [currentVisualEl, setCurrentVisualEl] = useState();
   const [currentStep, setCurrentStep] = useState(0);
-  const stepsMap = ()=> [steps, currentStep];
+  const stepsMap = ()=> ({
+    numberOfSteps: steps.length,
+    currentStep
+  });
 
+  
   const commonProps = {
     changeStep,
     stepsMap,

@@ -2,7 +2,7 @@ import React from "react";
 
 function StepsViewBar({stepsMap}) {
 
-  const [steps, currentStep] = stepsMap();
+  const {numberOfSteps, currentStep} = stepsMap();
 
   let itemClass = (i) => {
     if(i === currentStep) return "current";
@@ -11,14 +11,24 @@ function StepsViewBar({stepsMap}) {
     return;
   }
 
+  const steps = Array.from({
+    length: numberOfSteps}, 
+    (_, i) =>{
+      <li key={i} className={itemClass(i)}> 
+      <span>{i + 1}</span>
+    </li>
+    }
+  )
+
   return(
     <ul className="steps_bar">
       {
-        steps.map((step, i)=> {
+        Array.from({ length: numberOfSteps},  (_, i) =>{
           return (
-            <li key={step.props.title ?? "Success Page"} className={itemClass(i)}> 
+            <li key={i} className={itemClass(i)}> 
               <span>{i + 1}</span>
-            </li>)
+            </li>
+          )
         })
       }
     </ul>

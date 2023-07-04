@@ -4,7 +4,11 @@ import * as Yup from "yup";
 import Form from "./Form";
 import InputItem from "./InputItem";
 
-function MeasurementsForm({changeStep, stepsMap, onSubmit, title}) {
+function MeasurementsForm({
+	changeStep, 
+	stepsMap,  
+	title,
+	onSubmit}) {
     const {register, handleSubmit, reset} = useForm();
     const [currentErrors, setCurrentErrors] = useState();
 
