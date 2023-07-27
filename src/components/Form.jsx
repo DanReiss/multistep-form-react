@@ -16,7 +16,7 @@ function Form({
 	}) {
 	const {formData, setFormData} = useContext(FormContext);
 	const {handleSubmit, reset, setCurrentErrors} = formControl;
-	const {numberOfSteps, current} = stepsMap();
+	const {numberOfSteps, currentStep} = stepsMap();
 
 	useEffect(()=> {
 			setInitialValues();
@@ -71,7 +71,7 @@ function Form({
 
 					<div className="form_buttons_box">
 						{
-							current === 0
+							currentStep === 0
 							? <button type="button" className="invisible"></button>
 							:	<button type="button" onClick={onBackStep}>
 									<span>
@@ -83,7 +83,7 @@ function Form({
 						<button 
 							aria-label="next step"
 						 	className={
-								current === numberOfSteps 
+								currentStep === numberOfSteps 
 								? "submit_btn" 
 								: "next_btn"
 							} 
