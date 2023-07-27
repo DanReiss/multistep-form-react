@@ -9,7 +9,7 @@ function InputItem({
     label, 
     placeholder, 
     register, 
-    error}) {
+    currentErrors:  error}) {
 	const [passwordShow, setPasswordShow] = useState(false);
 
 	function changePasswordVisibility() {
