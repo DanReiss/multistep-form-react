@@ -12,13 +12,14 @@ body{
   display: grid;
   place-items: center;
   font-size: 1.15rem;
+  min-height: 100vh;
 }
 
 body, html{
   background-color: $white;
   color: $black;
   width: 100vw;
-  height: 100%;
+  height: auto;
 }
 
 h2{
@@ -89,6 +90,7 @@ button{
   align-items: center;
   opacity: 0;
   right: 25%;
+  margin: 2rem 0;
   animation: slide-in 0.5s ease-out forwards;
 
   h2{
@@ -106,10 +108,11 @@ button{
   }
 
   @include large{
+    width: 55vw;
     grid-template-columns: 3rem auto;
   }
 
-  @include large{
+  @include xlarge{
     width: 40vw;
   }
 }
@@ -132,11 +135,13 @@ button{
     span{
       display: inline-block;
       text-align: center;
-      background-color: $green;
+      background-color: $light-gray;
       width: var(--li-size);
       height: var(--li-size);
       line-height: var(--li-size);
       border-radius: 50%;
+      outline: 3px solid #fff;
+
     }
 
     @include large{
@@ -154,6 +159,9 @@ button{
       width: 100%;
       height: var(--li-size);
     }
+    &::after{
+      display: none;
+    }
   }
 
   li.current span{
@@ -161,10 +169,10 @@ button{
   }
   
   li.done span{
-    background-color: $light-gray;
+    background-color: $green;
   }
 
-  li.done::after{
+  li::after{
     content: "";
     display: inline-block;
     position: absolute;
@@ -175,8 +183,7 @@ button{
     margin: auto;
     z-index: -1;
     background-color: $light-gray;
-  
-
+    
     @include large{
       width: 5px;
       height: 100%;
@@ -185,12 +192,16 @@ button{
     }
   }
 
+  li.done::after{
+    background-color: $green;
+  }
+
   li.last_done::after{
-    background: linear-gradient(90deg, $light-gray 0%, $blue 100%);
+    background: linear-gradient(90deg, $green 0%, $blue 100%);
   
   
     @include large{
-      background: linear-gradient(180deg, $light-gray 60%, $blue 100%);
+      background: linear-gradient(180deg, $green 60%, $blue 100%);
     }
   }
 
@@ -198,6 +209,7 @@ button{
     flex-direction: column;
     padding: 2rem 0;
     --li-size: 35px;
+    margin-right: 1rem;
   }
 }
 
@@ -216,7 +228,7 @@ button{
 input:focus, select:focus{
   box-shadow: 0 0 0 0;
   outline: 0;
-  border-width: 0 0 2px 0;
+  border-width: 0 0 1px 0;
   border-color: $blue;
 }
 
@@ -238,6 +250,10 @@ input::placeholder, select::placeholder{
   @include large{
     padding: 0.75rem 0;
   }
+}
+
+.input_box.focused{
+  color: $blue;
 }
 
 .input_warning{
@@ -307,19 +323,47 @@ input::placeholder, select::placeholder{
 }
 
 .radio_box{
+  @include flex(column, center, center);
 
   label{
-    @include flex(row, start, center);
-    margin: 0.8rem 0;
+    @include flex(row, center, center);
+    cursor: pointer;
+    border: 1px solid $light-gray;
+    border-radius: $rounded;
+    margin: 0.4rem 0;
+    padding: 0.5rem 0.3rem;
+    width: 100%;
+
 
     input{
-      border-radius: 10%;
-      margin: 0 10px;
-      width: 18px;
-      height: 18px;
+      display: none;
+      cursor: pointer;
+    }
+
+    @include medium{
+      width: initial;
+    }
+
+    &.checked{
+      color: $white;
+      background-color: $blue;
+      border-color: $white;
     }
   }
+
+  @include medium{
+    @include flex(row, space-between, center);
+  }
 }
+
+.select_box{
+
+  select{
+    border: 1px solid $light-gray;
+    border-radius: $rounded;
+  }
+}
+
 
 .balloons{
   position: absolute;
@@ -336,6 +380,22 @@ input::placeholder, select::placeholder{
   @include xlarge{
     width: 100vw;
     height: 75%;
+  }
+}
+
+.waves{
+  position: fixed;
+  bottom: -5%;
+  left: 0;
+  width: 100vw;
+  height: 20vh;
+  background-image: url(/public/assets/waves.png);
+  background-size: cover;
+
+  @include xlarge{
+    width: 100vw;
+    height: 30vh;
+    bottom: 0;
   }
 }
 

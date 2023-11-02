@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import React, { useState, useEffect } from "react";
+import { useFormContext } from "react-hook-form";
 import * as Yup from "yup";
 import Form from "./Form";
 import InputItem from "./InputItem";
@@ -7,13 +7,15 @@ import InputItem from "./InputItem";
 function PersonalDataForm({ 
 		changeStep,
 	 	stepsMap, 
-	 	title }) {
-	const { register, handleSubmit, reset } = useForm();
+	 	title,
+		setVisualEl,	
+	}) {
+	const { register, handleSubmit, reset } = useFormContext();
 	const [currentErrors, setCurrentErrors] = useState();
-	const inputsCommonProps = {
-		register, 
-		currentErrors,
-	}
+
+	useEffect(()=> {
+		setVisualEl(["waves"]);
+	},[]);
 
 	const stepSchema = Yup.object().shape({
 		name: Yup.string()
@@ -40,19 +42,19 @@ function PersonalDataForm({
 				name="name" 
 				label="Name" 
 				placeholder="Your Name" 
-				{...inputsCommonProps}
+				error={currentErrors}
 			/>
 			<InputItem 
 				name="lastname"  
 				label="Last Name" 
 				placeholder="Your LastName" 
-				{...inputsCommonProps}
+				error={currentErrors}
 			/>
 			<InputItem 
 				name="birthdate" 
 				type="date" 
 				label="Date of Birth" 
-				{...inputsCommonProps} 
+				error={currentErrors}
 			/>
 			<div className="input_box input_text_box">
 				<label htmlFor="language">Language</label>

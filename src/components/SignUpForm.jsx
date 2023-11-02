@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import React, { useState, useEffect } from "react";
+import { useFormContext } from "react-hook-form";
 import * as Yup from "yup";
 import Form from "./Form";
 import InputItem from "./InputItem";
@@ -7,13 +7,15 @@ import InputItem from "./InputItem";
 function SignUpForm({ 
 		changeStep,
 	 	stepsMap, 
-		title}) {
-	const { register, handleSubmit, reset } = useForm();
+		title,
+		setVisualEl,
+	}) {
+	const { register, handleSubmit, reset } = useFormContext();
 	const [currentErrors, setCurrentErrors] = useState({});
-	const inputsCommonProps = {
-		register, 
-		currentErrors,
-	}
+
+	useEffect(()=> {
+		setVisualEl(["waves"]);
+	},[]);
 
 	const stepSchema = Yup.object().shape({
 		email: Yup.string()
@@ -45,26 +47,26 @@ function SignUpForm({
 			stepsMap={stepsMap}
 		>
 			<InputItem 
-				{...inputsCommonProps} 
+				error={currentErrors}
 				name="email"   
 				label="Email" 
 				placeholder="youremail@gmail.com" 
 			/>
 			<InputItem 
-				{...inputsCommonProps}  
+				error={currentErrors}
 				name="username" 
 				label="Username" 
 				placeholder="Username" 
 			/>
 			<InputItem 
-				{...inputsCommonProps} 
+				error={currentErrors}
 				name="password" 
 				type="password" 
 				label="Password" 
 				placeholder="Your password" 
 			/>
 			<InputItem 
-				{...inputsCommonProps} 
+				error={currentErrors}
 				name="cpassword" 
 				type="password" 
 				label="Confirm Password" 

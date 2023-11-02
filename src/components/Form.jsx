@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import FormContext from "../context/FormContext";
 import StepsViewBar from "./StepsViewBar";
+import { FormProvider } from "react-hook-form";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeftLong, faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
