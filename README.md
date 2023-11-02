@@ -8,3 +8,8 @@
 
 - ### Tecnologias
 - React, JavaScript, Context API, React Hook Form e SASS
+
+## Como executar
+- Clone este repositório (https://github.com/DanReiss/multistep-form-react)
+- Instale as dependências usando `npm install` ou `yarn add`
+- Execute o projeto usando `npm start` ou `yarn start`
